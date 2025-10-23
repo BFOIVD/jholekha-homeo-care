@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jholekha Homeo Care - Healing Naturally, Caring Personally</title>
+
+    <!-- Meta Tags for SEO and Social Sharing -->
+    <meta name="description" content="Jholekha Homeo Care offers premium homeopathic treatment in Cumilla, specializing in chronic diseases and mother & child health. Led by Dr. Jholekha Akter.">
+    <meta name="keywords" content="homeopathy, homeo care, natural healing, Dr. Jholekha Akter, Cumilla, homeopathic clinic, chronic disease treatment">
+    <meta property="og:title" content="Jholekha Homeo Care">
+    <meta property="og:description" content="Healing Naturally • Caring Personally">
+    <meta property="og:image" content="https://i.imgur.com/8QpWn1h.png"> <!-- Social Sharing Logo -->
+    <meta property="og:url" content="https://your-domain.com"> <!-- Note: Replace with your actual domain -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.imgur.com/your-favicon-url.png" type="image/png"> <!-- Note: Replace with a URL to your favicon image -->
+
+    <!-- Google Fonts: Playfair Display & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- OneSignal for Push Notifications -->
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+      window.OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+        OneSignal.init({
+          appId: "YOUR_ONESIGNAL_APP_ID", // Replace with your OneSignal App ID
+        });
+      });
+    </script>
+
+    <style>
+        /* --- 1. GLOBAL STYLES & BRAND PALETTE --- */
+        :root {
+            --emerald-green: #005B41;
+            --beige-cream: #F4EDE3;
+            --gold: #C8A951;
+            --white: #FFFFFF;
+            --dark-text: #333333;
+
+            --font-heading: 'Playfair Display', 'Cormorant Garamond', serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--beige-cream);
+            color: var(--dark-text);
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            color: var(--emerald-green);
+            font-weight: 700;
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gold-text {
+            color: var(--gold);
+        }
+
+        /* --- 2. UTILITIES & ANIMATIONS --- */
+        @keyframes subtle-leaf-animation {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+            50% { transform: translateY(-20px) rotate(5deg); opacity: 0.3; }
+            100% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--gold);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(200, 169, 81, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(200, 169, 81, 0.5);
+        }
+
+        /* --- 3. LANGUAGE TOGGLE & NAVBAR --- */
+        .navbar {
+            position: fixed; top: 0; width: 100%; padding: 1rem 2rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px); z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .navbar-logo { font-family: var(--font-heading); font-size: 1.5rem; color: var(--emerald-green); text-decoration: none; }
+        .lang-toggle button {
+            background-color: var(--emerald-green); color: var(--white); border: none;
+            padding: 8px 15px; border-radius: 20px; cursor: pointer; font-family: var(--font-body);
+        }
+
+        /* --- 4. HERO SECTION --- */
+        .hero {
+            position: relative; min-height: 100vh; display: flex;
+            align-items: center; justify-content: center; text-align: center;
+            padding-top: 80px; background: linear-gradient(135deg, var(--emerald-green) 0%, #004430 100%);
+            color: var(--white);
+        }
+        .hero-background-leaves { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: 1; }
+        .hero-background-leaves .leaf {
+            position: absolute; width: 50px; height: 50px;
+            background-image: url('https://www.transparentpng.com/thumb/leaf/green-leaf-png-pic-18.png');
+            background-size: contain; background-repeat: no-repeat;
+            animation: subtle-leaf-animation 15s infinite ease-in-out;
+        }
+        .leaf:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+        .leaf:nth-child(2) { top: 20%; left: 80%; animation-delay: 2s; width: 80px; height: 80px; }
+        .leaf:nth-child(3) { top: 70%; left: 10%; animation-delay: 5s; }
+        .hero-content { position: relative; z-index: 2; animation: fade-in 1.5s ease-out; }
+        .hero-logo { margin-bottom: 1rem; } /* Adjusted margin for spacing */
+        .hero h1 { font-size: 3.5rem; margin-bottom: 0.5rem; color: var(--white); }
+        .hero .tagline { font-size: 1.25rem; font-style: italic; color: var(--beige-cream); margin-bottom: 2.5rem; }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; align-items: center; }
+        #music-btn { background-color: transparent; border: 2px solid var(--gold); color: var(--gold); }
+        #music-btn:hover { background-color: var(--gold); color: var(--white); }
+
+        /* --- 5. DOCTOR PROFILE SECTION --- */
+        .doctor-profile { display: flex; align-items: center; justify-content: center; gap: 3rem; } /* Added justify-content */
+        .doctor-photo { flex-basis: 35%; text-align: center; }
+        .doctor-photo img { max-width: 250px; border-radius: 50%; border: 8px solid var(--white); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .doctor-info { flex-basis: 65%; }
+        .doctor-info h2 { font-size: 2.5rem; margin-bottom: 1rem; text-align: left; }
+        .doctor-info .qualifications { font-size: 1.1rem; font-weight: 500; color: var(--emerald-green); margin-bottom: 1rem; }
+        .doctor-specialty { margin-top: 1.5rem; padding: 1rem; background-color: #e9fdf8; border-left: 4px solid var(--gold); border-radius: 4px; }
+
+        /* --- [NEW] ALL SERVICES SECTION --- */
+        .all-services-section { background-color: var(--white); text-align: center; }
+        .all-services-section h2 { font-size: 2rem; }
+        .all-services-section p { font-size: 1.2rem; color: var(--dark-text); max-width: 600px; margin: -2rem auto 0; }
+        
+        /* --- [NEW] DETAILED SERVICES SECTION --- */
+        .services-category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+        .service-category-card {
+            background-color: var(--white); padding: 2rem; border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+        }
+        .service-category-card h3 {
+            display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+            font-family: var(--font-body); font-weight: 600; font-size: 1.25rem;
+        }
+        .service-category-card h3 i { color: var(--gold); font-size: 1.5rem; }
+        .service-category-card ul { list-style: none; padding-left: 1rem; }
+        .service-category-card li { margin-bottom: 0.5rem; padding-left: 1rem; position: relative; }
+        .service-category-card li::before {
+            content: '🌿'; position: absolute; left: -1rem; color: var(--emerald-green);
+        }
+
+        /* --- [UPDATED] TIMINGS SECTION --- */
+        .timings-section { background-color: var(--white); }
+        .timings-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: start; }
+        .info-card { background-color: #fdfaf6; padding: 2rem; border-radius: 12px; border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .info-card h3 { border-bottom: 2px solid var(--gold); padding-bottom: 0.5rem; margin-bottom: 1.5rem; font-size: 1.5rem; }
+        .info-card p { margin-bottom: 0.5rem; font-size: 1.1rem; }
+        .timings-table { list-style: none; }
+        .timings-table li { display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid #eee; }
+        .timings-table li strong { color: var(--emerald-green); }
+
+        /* --- MAP & FOOTER --- */
+        .map-section { padding: 0; }
+        .map-container { position: relative; width: 100%; height: 450px; }
+        .map-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        footer { background-color: var(--emerald-green); color: var(--beige-cream); text-align: center; padding: 3rem 1rem; }
+        .footer-contact-buttons { margin-bottom: 2rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+        .footer-contact-buttons a {
+            color: var(--emerald-green); background-color: var(--white); padding: 10px 20px;
+            border-radius: 30px; text-decoration: none; font-weight: 500; transition: all 0.3s ease;
+        }
+        .footer-contact-buttons a:hover { background-color: var(--gold); color: var(--white); transform: translateY(-2px); }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h2 { font-size: 2.2rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero-buttons { flex-direction: column; }
+            .doctor-profile { flex-direction: column; text-align: center; }
+            .doctor-info h2 { text-align: center; }
+            .doctor-info { flex-basis: 100%; } /* Ensure info takes full width on mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="soothing-music" loop src="https://www.bensound.com/bensound-music/bensound-relaxing.mp3"></audio>
+
+    <nav class="navbar">
+        <a href="#" class="navbar-logo" data-en="Jholekha Homeo Care" data-bn="জুলেখা হোমিও কেয়ার">Jholekha Homeo Care</a>
+        <div class="lang-toggle">
+            <button id="lang-toggle-btn">বাংলা</button>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background-leaves">
+            <div class="leaf"></div><div class="leaf"></div><div class="leaf"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-logo">
+                <!-- Removed broken image link -->
+            </div>
+            <h1 data-en="Jholekha Homeo Care" data-bn="জুলেখা হোমিও কেয়ার">Jholekha Homeo Care</h1>
+            <p class="tagline" data-en="Healing Naturally • Caring Personally" data-bn="প্রাকৃতিকভাবে নিরাময় • ব্যক্তিগতভাবে যত্ন">Healing Naturally • Caring Personally</p>
+            <div class="hero-buttons">
+                <button id="music-btn" class="btn"><i class="fas fa-play"></i> <span data-en="Play Soothing Music" data-bn="শান্ত সঙ্গীত চালান">Play Soothing Music</span></button>
+                <a href="tel:01855365115" class="btn btn-primary"><i class="fas fa-phone-alt"></i> <span data-en="Get Appointment" data-bn="অ্যাপয়েন্টমেন্ট নিন">Get Appointment</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. About Doctor Section -->
+    <section id="about" class="container">
+        <div class="doctor-profile">
+            <div class="doctor-photo">
+                <!-- Removed broken image placeholder -->
+            </div>
+            <div class="doctor-info">
+                <h2 data-en="Dr. Jholekha Akter" data-bn="ডাঃ জুলেখা আক্তার">Dr. Jholekha Akter</h2>
+                <p class="qualifications" data-en="(Homeopath)" data-bn="(হোমিওপ্যাথ)">(Homeopath)</p>
+                <p>D.H.M.S (Dhaka), B.S.S (Nu)</p>
+                <p><strong>Govt. Reg. No. 17407</strong></p>
+                <div class="doctor-specialty">
+                    <p><strong class="gold-text" data-en="Specialist in Mother & Child Health, and Chronic Diseases." data-bn="মা ও শিশু রোগে অভিজ্ঞ এবং জটিল ও পুরাতন রোগের চিকিৎসক।">Specialist in Mother & Child Health, and Chronic Diseases.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. [NEW] All Services Section -->
+    <section class="all-services-section">
+        <div class="container">
+            <h2 data-en="Comprehensive Treatment for All Ailments" data-bn="সকল রোগের সুচিকিৎসা">Comprehensive Treatment for All Ailments</h2>
+            <p data-en="We provide holistic and effective homeopathic care for a wide range of acute and chronic health issues." data-bn="আমরা সকল প্রকার নতুন এবং পুরাতন স্বাস্থ্য সমস্যার জন্য সামগ্রিক এবং কার্যকর হোমিওপ্যাথিক চিকিৎসা প্রদান করি।">We provide holistic and effective homeopathic care for a wide range of acute and chronic health issues.</p>
+        </div>
+    </section>
+
+    <!-- 4. [NEW] Detailed Treatment List Section -->
+    <section id="treatments" class="container">
+        <h2 data-en="Our Areas of Expertise" data-bn="আমাদের চিকিৎসার ক্ষেত্রসমূহ">Our Areas of Expertise</h2>
+        <div class="services-category-grid">
+            <div class="service-category-card">
+                <h3><i class="fas fa-female"></i> <span data-en="Women's Health (Gynecology)" data-bn="মহিলাদের স্বাস্থ্য (স্ত্রীরোগ)">Women's Health (Gynecology)</span></h3>
+                <ul>
+                    <li data-en="Menstrual Problems" data-bn="মাসিকের সমস্যা">Menstrual Problems</li>
+                    <li data-en="Leucorrhoea (White Discharge)" data-bn="সাদাস্রাব বা লিকুরিয়া">Leucorrhoea (White Discharge)</li>
+                    <li data-en="Infertility Issues" data-bn="বাচ্চা না হওয়া">Infertility Issues</li>
+                    <li data-en="Uterine & Other Tumors" data-bn="জরায়ুর টিউমার ও অন্যান্য">Uterine & Other Tumors</li>
+                    <li data-en="Hormonal Imbalances" data-bn="হরমোনের ভারসাম্যহীনতা">Hormonal Imbalances</li>
+                    <li data-en="Breast Health Issues" data-bn="স্তনের সমস্যা">Breast Health Issues</li>
+                </ul>
+            </div>
+            <div class="service-category-card">
+                <h3><i class="fas fa-shield-alt"></i> <span data-en="Chronic & Complex Conditions" data-bn="জটিল ও পুরাতন রোগ">Chronic & Complex Conditions</span></h3>
+                <ul>
+                    <li data-en="Jaundice" data-bn="জন্ডিস">Jaundice</li>
+                    <li data-en="Kidney & Gallbladder Stones" data-bn="কিডনি ও পিত্তথলির পাথর">Kidney & Gallbladder Stones</li>
+                    <li data-en="Piles, Fissure, Fistula" data-bn="অশ্ব, পাইলস, ভগন্দর">Piles, Fissure, Fistula</li>
+                    <li data-en="Allergies & Asthma" data-bn="এলার্জি ও শ্বাসকষ্ট">Allergies & Asthma</li>
+                    <li data-en="Skin Diseases" data-bn="চর্মরোগ">Skin Diseases</li>
+                    <li data-en="Tumors (Anywhere on the body)" data-bn="শরীরের যেকোনো টিউমার">Tumors (Anywhere on the body)</li>
+                </ul>
+            </div>
+            <div class="service-category-card">
+                <h3><i class="fas fa-bone"></i> <span data-en="Pain & Rheumatic Issues" data-bn="ব্যথা ও বাতজনিত সমস্যা">Pain & Rheumatic Issues</span></h3>
+                <ul>
+                    <li data-en="Joint & Knee Pain" data-bn="হাড়ের গিরা ও হাঁটুর ব্যাথা">Joint & Knee Pain</li>
+                    <li data-en="Rheumatic Fever & Arthritis" data-bn="বাত জ্বর ও বাতের ব্যাথা">Rheumatic Fever & Arthritis</li>
+                    <li data-en="Back Pain" data-bn="কোমর ব্যাথা">Back Pain</li>
+                    <li data-en="Toothache & Gum Problems" data-bn="দাঁত ব্যাথা ও মাড়ির সমস্যা">Toothache & Gum Problems</li>
+                    <li data-en="Ear Pain & Infections" data-bn="কান ব্যাথা ও ইনফেকশন">Ear Pain & Infections</li>
+                </ul>
+            </div>
+            <div class="service-category-card">
+                <h3><i class="fas fa-heartbeat"></i> <span data-en="Lifestyle & Wellness" data-bn="লাইফস্টাইল ও সুস্থতা">Lifestyle & Wellness</span></h3>
+                <ul>
+                    <li data-en="Hair Loss & Regrowth" data-bn="চুল পড়া ও নতুন চুল গজানো">Hair Loss & Regrowth</li>
+                    <li data-en="Weight Management (Gain/Loss)" data-bn="ওজন ব্যবস্থাপনা (মোটা/চিকন হওয়া)">Weight Management (Gain/Loss)</li>
+                    <li data-en="Sexual Weakness" data-bn="যৌন দুর্বলতা">Sexual Weakness</li>
+                    <li data-en="Acne & Skin Blemishes" data-bn="ব্রণ ও ত্বকের দাগ">Acne & Skin Blemishes</li>
+                    <li data-en="Fever, Cold, Cough" data-bn="জ্বর, সর্দি, কাশি">Fever, Cold, Cough</li>
+                    <li data-en="Mother & Child Care" data-bn="মা ও শিশুর যত্ন">Mother & Child Care</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. [UPDATED] Visiting Hours Section -->
+    <section id="hours" class="timings-section">
+        <div class="container timings-grid">
+            <div class="info-card">
+                <h3 data-en="Dr. Jholekha Akter" data-bn="ডাঃ জুলেখা আক্তার">Dr. Jholekha Akter</h3>
+                <p><i class="fas fa-phone-alt gold-text"></i> 01855365115</p>
+                <ul class="timings-table">
+                    <li><strong data-en="Morning" data-bn="সকাল">Morning</strong> <span>9 AM – 1 PM</span></li>
+                    <li><strong data-en="Evening" data-bn="বিকাল">Evening</strong> <span>4 PM – 9 PM</span></li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3 data-en="Consulting Doctor" data-bn="পরামর্শক ডাক্তার">Consulting Doctor</h3>
+                 <p><strong>Dr. Abdul Barek</strong></p>
+                <p><i class="fas fa-phone-alt gold-text"></i> 01818715161</p>
+                <ul class="timings-table">
+                    <li><strong data-en="Afternoon" data-bn="দুপুর">Afternoon</strong> <span>2 PM – 4 PM</span></li>
+                    <li><strong data-en="Night" data-bn="রাত">Night</strong> <span>9 PM – 11 PM</span></li>
+                </ul>
+            </div>
+            <div class="info-card" style="grid-column: 1 / -1;">
+                <h3 data-en="Clinic Schedule & Address" data-bn="ক্লিনিকের সময়সূচী ও ঠিকানা">Clinic Schedule & Address</h3>
+                 <ul class="timings-table">
+                    <li><strong data-en="Saturday–Thursday" data-bn="শনিবার-বৃহস্পতিবার">Saturday–Thursday</strong> <spa)
+
+(li><strong data-en="Friday" data-bn="শুক্রবার">Friday</strong> <span data-en="Closed" data-bn="বন্ধ">Closed</span></li>
+                </ul>
+                <p style="margin-top: 1rem;"><i class="fas fa-map-marker-alt gold-text"></i> <strong data-en="370/KA Niramoy Hospital Road, Jhautala, Cumilla" data-bn="৩৭০/ক নিরাময় হাসপাতাল রোড, ঝাউতলা, কুমিল্লা">370/KA Niramoy Hospital Road, Jhautala, Cumilla</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Map Section -->
+    <section id="location" class="map-section">
+        <div class="map-container">
+            <iframe src="https://maps.google.com/maps?q=370%2FKA%20Niramoy%20Hospital%20Road%2C%20Jhautala%2C%20Cumilla&t=&z=15&ie=UTF8&iwloc=&output=embed" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-downgrade"></iframe>
+        </div>
+    </section>
+
+    <!-- 7. Footer -->
+    <footer>
+        <div class="container">
+            <h2 style="color: var(--white);" data-en="Get In Touch" data-bn="যোগাযোগ করুন">Get In Touch</h2>
+            <div class="footer-contact-buttons">
+                <a href="tel:01855365115"><i class="fas fa-phone-alt"></i> <span data-en="Call Dr. Jholekha" data-bn="ডাঃ জুলেখাকে কল করুন">Call Dr. Jholekha</span></a>
+                <a href="tel:01818715161"><i class="fas fa-phone-alt"></i> <span data-en="Call Dr. Barek" data-bn="ডাঃ বারেককে কল করুন">Call Dr. Barek</span></a>
+                <a href="https://wa.me/8801855365115" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                <a href="https://maps.google.com/?q=370/KA Niramoy Hospital Road, Jhautala, Cumilla" target="_blank"><i class="fas fa-map-marked-alt"></i> <span data-en="Find on Google Maps" data-bn="গুগল ম্যাপে খুঁজুন">Find on Google Maps</span></a>
+            </div>
+            <p>Govt. Reg. No. 17407</p>
+            <p>&copy; <span id="copyright-year"></span> Jholekha Homeo Care. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const audio = document.getElementById('soothing-music');
+        const musicBtn = document.getElementById('music-btn');
+        let isPlaying = false;
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('source') && urlParams.get('source') === 'qr') {
+            audio.play().catch(e => console.log("Autoplay was prevented by the browser."));
+            isPlaying = true;
+            musicBtn.querySelector('span').textContent = "Pause Music";
+            musicBtn.querySelector('i').className = "fas fa-pause";
+        }
+
+        musicBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+            isPlaying = !isPlaying;
+            updateLanguageContent(); // Update button text
+        });
+        
+        audio.onplaying = () => {
+            isPlaying = true;
+            musicBtn.querySelector('i').className = "fas fa-pause";
+            const span = musicBtn.querySelector('span');
+            span.textContent = isEnglish ? "Pause Music" : "সঙ্গীত থামান";
+        };
+        
+        audio.onpause = () => {
+            isPlaying = false;
+            musicBtn.querySelector('i').className = "fas fa-play";
+            const span = musicBtn.querySelector('span');
+            span.textContent = isEnglish ? "Play Soothing Music" : "শান্ত সঙ্গীত চালান";
+        };
+
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
+
+        const langToggleBtn = document.getElementById('lang-toggle-btn');
+        const elementsToTranslate = document.querySelectorAll('[data-en]');
+        let isEnglish = true;
+
+        function updateLanguageContent() {
+            const targetLang = isEnglish ? 'en' : 'bn';
+            document.documentElement.lang = targetLang;
+            
+            elementsToTranslate.forEach(el => {
+                const text = el.getAttribute(`data-${targetLang}`);
+                
+                // Preserve child nodes like icons
+                let firstChild = el.firstChild;
+                if (firstChild && (firstChild.nodeName === 'I' || firstChild.nodeName === 'STRONG')) {
+                    // This handles elements with icons or strong tags at the beginning
+                    let textNode = firstChild.nextSibling;
+                    if (textNode) {
+                        textNode.nodeValue = ` ${text} `;
+                    }
+                } else {
+                    el.textContent = text;
+                }
+            });
+            
+            langToggleBtn.textContent = isEnglish ? 'বাংলা' : 'English';
+            // Explicitly update music button text after language change
+            if (isPlaying) {
+                musicBtn.querySelector('span').textContent = isEnglish ? "Pause Music" : "সঙ্গীত থামান";
+            } else {
+                musicBtn.querySelector('span').textContent = isEnglish ? "Play Soothing Music" : "শান্ত সঙ্গীত চালান";
+            }
+        }
+
+        langToggleBtn.addEventListener('click', () => {
+            isEnglish = !isEnglish;
+            updateLanguageContent();
+        });
+        
+        updateLanguageContent();
+
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+    });
+    </script>
+</body>
+</html>
